@@ -1,0 +1,27 @@
+from gensim.models import Word2Vec
+from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('punkt')
+
+# Sample sentences
+sentences = [
+    'My name is Gagandeep',
+    'Gagandeep lives in new Delhi',
+    'Gagandeep loves technology',
+]
+
+# Tokenize the sentences
+tokenized_sentences = [word_tokenize(sentence.lower()) for sentence in sentences]
+
+# Create Word2Vec model
+model = Word2Vec(tokenized_sentences, vector_size=100, window=5, min_count=1, sg=0)
+
+# Get the word vector for a specific word
+word_vector = model.wv['gagandeep']
+
+print("Embedding for 'gagandeep':", word_vector)
+
+
+word_vector = model.wv['delhi']
+
+print("Embedding for 'delhi':", word_vector)
